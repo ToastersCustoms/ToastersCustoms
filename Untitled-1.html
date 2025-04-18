@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>✨ Toasters Customs Shop ✨</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000;
+      color: #fff;
+      scroll-behavior: smooth;
+    }
+    header {
+      background-color: #1a1a1a;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 2px solid #8000ff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+      color: #8000ff;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-color: #121212;
+      padding: 10px 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #8000ff;
+    }
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+      background: linear-gradient(135deg, #1a1a1a, #000);
+      border-bottom: 1px solid #333;
+    }
+    .hero h2 {
+      font-size: 2.5em;
+      color: #8000ff;
+    }
+    .products {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .products h3 {
+      font-size: 1.8em;
+      margin-bottom: 40px;
+    }
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .product {
+      background-color: #1a1a1a;
+      padding: 20px;
+      border-radius: 30px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+    }
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(128, 0, 255, 0.4);
+    }
+    .product img {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      margin-bottom: 15px;
+    }
+    .price-line {
+      text-decoration: line-through;
+      color: #999;
+      margin-right: 10px;
+    }
+    .product-name {
+      font-size: 1.5em;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .product-price {
+      font-size: 1.2em;
+      color: #8000ff;
+    }
+    .buttons {
+      margin-top: 15px;
+    }
+    .buttons a {
+      display: inline-block;
+      background-color: #8000ff;
+      color: #fff;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 30px;
+      margin-right: 10px;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .buttons a:hover {
+      background-color: #a64dff;
+      transform: scale(1.05);
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding-top: 60px;
+    }
+    .modal-content {
+      background-color: #121212;
+      margin: 5% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 400px;
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .close:hover,
+    .close:focus {
+      color: #8000ff;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    input[type="text"], select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #333;
+      border: 1px solid #8000ff;
+      border-radius: 5px;
+      color: white;
+    }
+    button {
+      background-color: #8000ff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 1.2em;
+    }
+    button:hover {
+      background-color: #a64dff;
+    }
+
+    /* Contact section styles */
+    .contact {
+      padding: 60px 20px;
+      text-align: center;
+      background-color: #1a1a1a;
+    }
+    .contact h3 {
+      font-size: 2em;
+      color: #8000ff;
+      margin-bottom: 20px;
+    }
+    .contact p {
+      font-size: 1.2em;
+      margin: 10px 0;
+      color: #fff;
+    }
+    .contact a {
+      color: #8000ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .contact a:hover {
+      color: #a64dff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>💫 Toasters Customs Shop ✨</h1>
+  </header>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#products">Products</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <section class="hero">
+    <h2>Welcome to the Custom Store</h2>
+  </section>
+  <section class="products" id="products">
+    <h3>Our Products</h3>
+    <div class="product-list">
+      <!-- Product List -->
+      <div class="product">
+        <img src="https://cdn.discordapp.com/attachments/1355971926220079144/1355972392668893274/u19_b_2.png?ex=680342f3&is=6801f173&hm=c58aa90f3bba52f09d0c65e32af6983e2913cc5c0c0f74f992972b9406fe8c1a&" alt="SSL BOOTS">
+        <div class="product-name">SSL BOOTS</div>
+        <div class="product-price">
+          <span class="price-line">100SC | £10</span> 80SC | £8
+        </div>
+        <div class="buttons">
+          <a href="javascript:void(0);" onclick="openModal('SSL BOOTS', 8, 80)">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product">
+        <img src="https://cdn.discordapp.com/attachments/1355971926220079144/1355972413346676756/u22_b_9.png?ex=680342f8&is=6801f178&hm=914ff51494fd971af50735296f51ef73a224f938c8921501f9e80967e6a1c1ae&" alt="Purple UVBL">
+        <div class="product-name">PURPLE UVBL</div>
+        <div class="product-price">
+          <span class="price-line">100SC | £10</span> 80SC | £8
+        </div>
+        <div class="buttons">
+          <a href="javascript:void(0);" onclick="openModal('Purple UVBL', 8, 80)">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product">
+        <img src="https://cdn.discordapp.com/attachments/1355971926220079144/1355972457558835421/u22_b_10.png?ex=68034302&is=6801f182&hm=667f28c2d2933f943b71a2fec1bacdb3db06c212e41d371e049f884dda00de82&" alt="Yellow UVBL">
+        <div class="product-name">YELLOW UVBL</div>
+        <div class="product-price">
+          <span class="price-line">100SC | £10</span> 80SC | £8
+        </div>
+        <div class="buttons">
+          <a href="javascript:void(0);" onclick="openModal('Yellow UVBL', 8, 80)">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product">
+        <img src="https://cdn.discordapp.com/attachments/1355971926220079144/1355972517424267324/u14_b_4.png?ex=68034310&is=6801f190&hm=78a14f7bf968823444d54d47c07fc9252e8b8308deb85ce48dac1309ed84641c&" alt="Blue KW9">
+        <div class="product-name">BLUE KW9</div>
+        <div class="product-price">
+          <span class="price-line">100SC | £10</span> 80SC | £8
+        </div>
+        <div class="buttons">
+          <a href="javascript:void(0);" onclick="openModal('Blue KW9', 8, 80)">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product">
+        <img src="https://cdn.discordapp.com/attachments/1355971926220079144/1362373260997820498/YImufBf.png?ex=680379f9&is=68022879&hm=f5ca0c42a5e0c0b2e3aeb403662a11ccc438f31de06a059a2cc0b3e1175f2d6f&" alt="Sage Gloves">
+        <div class="product-name">SAGE GLOVES</div>
+        <div class="product-price">
+          <span class="price-line">60SC | £6</span> 50SC | £5
+        </div>
+        <div class="buttons">
+          <a href="javascript:void(0);" onclick="openModal('Sage Gloves', 5, 50)">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product">
+        <img src="https://cdn.discordapp.com/attachments/1355971926220079144/1359246527058415656/u14_ball_2.png?ex=68034eb9&is=6801fd39&hm=ff8772117a59e5c2aeb1e0a0cb19ffc878b068c0a41af93dab17488b46af27f8&" alt="VSL Ball">
+        <div class="product-name">VSL BALL</div>
+        <div class="product-price">
+          <span class="price-line">60SC | £6</span> 45SC | £5
+        </div>
+        <div class="buttons">
+          <a href="javascript:void(0);" onclick="openModal('VSL Ball', 5, 45)">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product">
+        <img src="https://cdn.discordapp.com/attachments/1355971926220079144/1355972275081576589/u22_b_6.png?ex=680342d7&is=6801f157&hm=f72bc34e54fb56c5becbb3354858d8491c3a605df2528a80a71b7eeaa6bee623&" alt="VPLF Boots">
+        <div class="product-name">VPLF Boots</div>
+        <div class="product-price">
+          <span class="price-line">30SC | £3.50</span> 25SC | £3
+        </div>
+        <div class="buttons">
+          <a href="javascript:void(0);" onclick="openModal('VPLF Boots', 3, 25)">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product">
+        <img src="https://cdn.discordapp.com/attachments/1355971926220079144/1355972300436017212/u22_h_5.png?ex=680342dd&is=6801f15d&hm=f026a7791949ec331a0daa58c94d97e6c2f25e8933b700c49fba696581e651ef&" alt="VPLF Hat">
+        <div class="product-name">VPLF Hat</div>
+        <div class="product-price">
+          <span class="price-line">30SC | £3.50</span> 25SC | £3
+        </div>
+        <div class="buttons">
+          <a href="javascript:void(0);" onclick="openModal('VPLF Hat', 3, 25)">Buy Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal for Buy Now -->
+  <div id="buyModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Buy Product</h2>
+      <p id="productInfo"></p>
+      <label for="paymentMethod">Select Payment Method:</label>
+      <select id="paymentMethod" onchange="togglePaymentSection()">
+        <option value="paypal">PayPal</option>
+        <option value="sc">SC/Credits</option>
+      </select>
+
+      <div id="paypalSection" class="payment-section">
+        <p>Send £<span id="priceInPounds"></span> to <strong>@cameronchattwood610</strong> on PayPal.</p>
+        <input type="text" id="discordUsernamePaypal" placeholder="Enter your Discord Username" required>
+        <input type="text" id="playerIdPaypal" placeholder="Enter your Player ID" required>
+      </div>
+      
+      <div id="scSection" class="payment-section" style="display:none;">
+        <p>Send <span id="scAmount"></span> SC to <strong>B-184-2162</strong>.</p>
+        <input type="text" id="discordUsernameSC" placeholder="Enter your Discord Username" required>
+        <input type="text" id="playerIdSC" placeholder="Enter your Player ID" required>
+      </div>
+
+      <button onclick="submitForm()">Submit</button>
+    </div>
+  </div>
+
+  <section class="contact" id="contact">
+    <h3>Contact</h3>
+    <p>Discord User: <strong>Bigbobman56</strong></p>
+    <p>Join the server: <a href="https://discord.gg/FgmV8tpWYk" target="_blank">Click here to join</a></p>
+  </section>
+
+  <footer>
+    &copy; 2025 Toasters Customs Shop. All rights reserved.
+  </footer>
+
+  <script>
+    function openModal(productName, price, sc) {
+      document.getElementById("productInfo").innerText = productName + " - " + "Price: £" + price;
+      document.getElementById("priceInPounds").innerText = price;
+      document.getElementById("scAmount").innerText = sc;
+      document.getElementById("buyModal").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("buyModal").style.display = "none";
+    }
+
+    function togglePaymentSection() {
+      var paymentMethod = document.getElementById("paymentMethod").value;
+      if (paymentMethod === "paypal") {
+        document.getElementById("paypalSection").style.display = "block";
+        document.getElementById("scSection").style.display = "none";
+      } else {
+        document.getElementById("scSection").style.display = "block";
+        document.getElementById("paypalSection").style.display = "none";
+      }
+    }
+
+    function submitForm() {
+      let paymentMethod = document.getElementById("paymentMethod").value;
+      if (paymentMethod === "paypal") {
+        alert("Thank you for your purchase! Please check your PayPal account.");
+      } else {
+        alert("Thank you for your purchase! Please send the SC.");
+      }
+      closeModal();
+    }
+  </script>
+</body>
+</html>
